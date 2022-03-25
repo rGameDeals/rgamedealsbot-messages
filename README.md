@@ -1,0 +1,2 @@
+# rgamdealsbot-response
+# rgamedealsbot-messages
