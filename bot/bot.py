@@ -28,6 +28,7 @@ REDDIT_SECRET=os.environ['REDDIT_SECRET']
 REDDIT_USER = os.environ['REDDIT_USER']
 REDDIT_PASS = os.environ['REDDIT_PASS']
 REDDIT_SUBREDDIT= os.environ['REDDIT_SUBREDDIT']
+AGENT="python:rGameDeals-messages:2.0b (by dgc1980)"
 AGENT="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36"
 
 reddit = praw.Reddit(client_id=REDDIT_CID,
