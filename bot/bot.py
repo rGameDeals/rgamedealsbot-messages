@@ -40,9 +40,9 @@ subreddit = reddit.subreddit(REDDIT_SUBREDDIT)
 wikiconfig=[]
 apppath='/storage/'
 
-logging.basicConfig(level=logging.INFO,
-                    format='%(asctime)s %(name)-12s %(levelname)-8s %(message)s',
-                    datefmt='%m-%d %H:%M')
+#logging.basicConfig(level=logging.INFO,
+#                    format='%(asctime)s %(name)-12s %(levelname)-8s %(message)s',
+#                    datefmt='%m-%d %H:%M')
 
 console = logging.StreamHandler()
 console.setLevel(logging.INFO)
