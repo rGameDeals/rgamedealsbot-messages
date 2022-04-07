@@ -189,6 +189,7 @@ while True:
                               availablereply = availablereply.replace('{{author}}', msg.author.name)
 
                               myreply = msg.reply( availablereply ).mod.distinguish(how='yes')
+                              msg.mark_read()
 
                         elif setsched:
                           #try:
@@ -200,7 +201,7 @@ while True:
 
                             cursorObj = con.cursor()
                             cursorObj.execute('DELETE from schedules WHERE postid = "' + msg.submission.id + '"')
-                            cursorObj.execute('INSERT into schedules(postid, schedtime) values(?,?)',(msg.submission.id,tm2) )
+                            cursorObj.execute('INSERT into schedules(postid, schedtime) values(%s,%s)',(msg.submission.id,tm2) )
                             con.commit()
                             logging.info("setting up schedule: " + msg.author.name + "for https://redd.it/" + msg.submission.id + " at " + str(tm.strftime('%Y-%m-%d %H:%M:%S'))  )
                             schedulereply = wikiconfig['schedule-message']
@@ -212,7 +213,7 @@ while True:
                             myreply = msg.reply( schedulereply ).mod.distinguish(how='yes')
                             msg.mark_read()
                           else:
-                            match1 = re.search("set expiry\ ([\w\:\ \-\+]+)", text)
+                            match1 = re.search(wikiconfig['schedule-trigger'] + "\ ([\w\:\ \-\+]+)", text)
                             #tm = time.mktime(datetime.datetime.strptime(match1.group(1), "%H:%M %d/%m/%Y").timetuple())
                             print( match1 )
                             tm = dateparser.parse( match1.group(1), settings={'PREFER_DATES_FROM': 'future', 'TIMEZONE': 'UTC', 'TO_TIMEZONE': 'UTC'} )
@@ -220,7 +221,7 @@ while True:
                             con = pymysql.connect( host=os.environ['MYSQL_HOST'], user=os.environ['MYSQL_USER'], passwd=os.environ['MYSQL_PASS'], db=os.environ['MYSQL_DB'] )
                             cursorObj = con.cursor()
                             cursorObj.execute('DELETE from schedules WHERE postid = "' + msg.submission.id + '"')
-                            cursorObj.execute('INSERT into schedules(postid, schedtime) values(?,?)',(msg.submission.id,tm2) )
+                            cursorObj.execute('INSERT into schedules(postid, schedtime) values(%s,%s)',(msg.submission.id,tm2) )
                             con.commit()
                             logging.info("setting up schedule: " + msg.author.name + "for https://redd.it/" + msg.submission.id + " at " + str(tm.strftime('%Y-%m-%d %H:%M:%S'))  )
                             schedulereply = wikiconfig['schedule-message']
