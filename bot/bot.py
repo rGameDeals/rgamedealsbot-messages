@@ -93,6 +93,7 @@ logging.info("Monitoring inbox...")
 while True:
     try:
         for msg in reddit.inbox.stream():
+            con.ping(reconnect=True)
             expired = False
             oops = False
             setsched = False
