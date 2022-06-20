@@ -162,7 +162,8 @@ while True:
                               alreadyavailablereply = alreadyavailablereply.replace('{{available trigger}}',wikiconfig['available-trigger'])
                               alreadyavailablereply = alreadyavailablereply.replace('{{author}}', msg.author.name)
 
-                              myreply = msg.reply( alreadyavailablereply ).mod.distinguish(how='yes')
+                              myreply = msg.reply( alreadyavailablereply )
+                              myreply.mod.distinguish(how='yes')
 
                               msg.mark_read()
                               logging.info("already available... responded to: " + msg.author.name)
@@ -189,7 +190,8 @@ while True:
                               availablereply = availablereply.replace('{{available trigger}}',wikiconfig['available-trigger'])
                               availablereply = availablereply.replace('{{author}}', msg.author.name)
 
-                              myreply = msg.reply( availablereply ).mod.distinguish(how='yes')
+                              myreply = msg.reply( availablereply )
+                              myreply.mod.distinguish(how='yes')
                               msg.mark_read()
 
                         elif setsched:
@@ -211,7 +213,8 @@ while True:
                             schedulereply = schedulereply.replace('{{author}}', msg.author.name)
                             schedulereply = schedulereply.replace('{{time}}', str(tm.strftime('%Y-%m-%d %H:%M:%S'))   )
 
-                            myreply = msg.reply( schedulereply ).mod.distinguish(how='yes')
+                            myreply = msg.reply( schedulereply )
+                            myreply.mod.distinguish(how='yes')
                             msg.mark_read()
                           else:
                             match1 = re.search(wikiconfig['schedule-trigger'] + "\ ([\w\:\ \-\+]+)", text)
@@ -231,7 +234,8 @@ while True:
                             schedulereply = schedulereply.replace('{{author}}', msg.author.name)
                             schedulereply = schedulereply.replace('{{time}}', str(tm.strftime('%Y-%m-%d %H:%M:%S'))   )
 
-                            myreply = msg.reply( schedulereply ).mod.distinguish(how='yes')
+                            myreply = msg.reply( schedulereply )
+                            myreply.mod.distinguish(how='yes')
                             msg.mark_read()
                           #except:
                           #  pass
@@ -243,7 +247,8 @@ while True:
                                 alreadyexpired = alreadyexpired.replace('{{available trigger}}',wikiconfig['available-trigger'])
                                 alreadyexpired = alreadyexpired.replace('{{author}}', msg.author.name)
 
-                                myreply = msg.reply(alreadyexpired).mod.distinguish(how='yes')
+                                myreply = msg.reply(alreadyexpired)
+                                myreply.mod.distinguish(how='yes')
                                 msg.mark_read()
                                 logging.info("already expired... responded to: " + msg.author.name)
                             else:
@@ -264,7 +269,8 @@ while True:
                                 expiredmsg = expiredmsg.replace('{{available trigger}}',wikiconfig['available-trigger'])
                                 expiredmsg = expiredmsg.replace('{{author}}', msg.author.name)
 
-                                myreply = msg.reply(expiredmsg).mod.distinguish(how='yes')
+                                myreply = msg.reply(expiredmsg)
+                                myreply.mod.distinguish(how='yes')
                                 msg.mark_read()
                         elif expired and usertest:
                           msg.report('possible bot abuse')
