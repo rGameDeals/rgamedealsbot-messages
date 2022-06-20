@@ -177,7 +177,7 @@ while True:
                               cursorObj.execute('SELECT * FROM flairs WHERE postid = "'+msg.submission.id+'"')
                               rows = cursorObj.fetchall()
                               msg.mark_read()
-                              if len(rows) is not 0 and rows[0][2] != "Expired":
+                              if len(rows) != 0 and rows[0][2] != "Expired":
                                 try:
                                   cursorObj.execute('DELETE FROM flairs WHERE postid = "'+msg.submission.id+'"')
                                   con.commit()
