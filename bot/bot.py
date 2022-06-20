@@ -40,15 +40,10 @@ subreddit = reddit.subreddit(REDDIT_SUBREDDIT)
 wikiconfig=[]
 apppath='/storage/'
 
-#logging.basicConfig(level=logging.INFO,
-#                    format='%(asctime)s %(name)-12s %(levelname)-8s %(message)s',
-#                    datefmt='%m-%d %H:%M')
+logging.basicConfig(level=logging.INFO,
+                    format='%(asctime)s - %(message)s',
+                    datefmt='%m-%d %H:%M')
 
-console = logging.StreamHandler()
-console.setLevel(logging.INFO)
-formatter = logging.Formatter('%(name)-12s: %(levelname)-8s %(message)s')
-console.setFormatter(formatter)
-logging.getLogger('').addHandler(console)
 
 def checkuser(username):
   commentcount = 0
