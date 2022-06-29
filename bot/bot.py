@@ -87,7 +87,8 @@ def checkuser(username):
 logging.info("Monitoring inbox...")
 while True:
     try:
-        for msg in reddit.inbox.stream():
+        for msg in reddit.inbox.stream(pause_after=0):
+          if msg:
             con.ping(reconnect=True)
             expired = False
             oops = False
