@@ -236,7 +236,7 @@ while True:
                           #except:
                           #  pass
                           msg.mark_read()
-                        elif expired and not usertest:
+                        elif expired:
                             if msg.submission.spoiler:
                                 alreadyexpired = wikiconfig['already-expired-reply']
                                 alreadyexpired = alreadyexpired.replace('{{expired trigger}}',wikiconfig['expired-trigger'])
@@ -268,14 +268,10 @@ while True:
                                 myreply = msg.reply(body=expiredmsg)
                                 myreply.mod.distinguish(how='yes')
                                 msg.mark_read()
-                        elif expired and usertest:
-                          msg.report('possible bot abuse')
-                          logging.info("maybe abuse from user?: https://reddit.com/u/" + msg.author.name + " on post https://reddit.com/" + msg.submission.id )
-                          msg.mark_read()
-                        elif oops and usertest:
-                          msg.report('possible bot abuse')
-                          logging.info("maybe abuse from user?: https://reddit.com/u/" + msg.author.name + " on post https://reddit.com/" + msg.submission.id )
-                          msg.mark_read()
+                            if usertest:
+                              msg.report('possible bot abuse')
+                              logging.info("maybe abuse from user?: https://reddit.com/u/" + msg.author.name + " on post https://reddit.com/" + msg.submission.id )
+                              msg.mark_read()
                         elif usertest:
                           msg.mark_read()
 
