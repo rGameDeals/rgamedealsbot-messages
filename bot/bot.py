@@ -90,11 +90,9 @@ while True:
         for msg in reddit.inbox.stream(pause_after=0):
           if msg:
             if msg.body.startswith('gadzooks!'):
-              #logging.info(msg.subreddit)
               sr = reddit.subreddit(str(msg.subreddit))
-              #sr = reddit.info(msg.subreddit.fullname)
               try:
-                sr.accept_moderator_invite()
+                sr.mod.accept_invite()
                 logging.info("accepting mod invite for " + msg.subreddit)
               except praw.errors.InvalidInvite:
                 continue
