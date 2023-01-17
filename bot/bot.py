@@ -94,7 +94,7 @@ while True:
               try:
                 sr.mod.accept_invite()
                 logging.info("accepting mod invite for " + str(msg.subreddit))
-              except praw.errors.InvalidInvite:
+              except:
                 continue
               message.mark_as_read()
             con.ping(reconnect=True)
