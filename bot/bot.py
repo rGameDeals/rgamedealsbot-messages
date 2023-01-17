@@ -91,11 +91,11 @@ while True:
           if msg:
             if msg.body.startswith('gadzooks!'):
               #logging.info(msg.subreddit)
-              sr = reddit.subreddit(msg.subreddit)
+              sr = reddit.subreddit(str(msg.subreddit))
               #sr = reddit.info(msg.subreddit.fullname)
               try:
                 sr.accept_moderator_invite()
-                logging.info("accepting mod invite for " + msg.subreddit.fullname)
+                logging.info("accepting mod invite for " + msg.subreddit)
               except praw.errors.InvalidInvite:
                 continue
               message.mark_as_read()
