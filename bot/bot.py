@@ -92,7 +92,7 @@ while True:
             if msg.body.startswith('gadzooks!'):
               logging.info(msg.subreddit.fullname)
               #sr = reddit.subreddit(msg.subreddit.fullname)
-              sr = reddit.info(thing_id=msg.subreddit.fullname)
+              sr = reddit.info(msg.subreddit.fullname)
               try:
                 sr.accept_moderator_invite()
                 logging.info("accepting mod invite for " + msg.subreddit.fullname)
