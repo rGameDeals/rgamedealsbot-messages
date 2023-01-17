@@ -96,7 +96,7 @@ while True:
                 logging.info("accepting mod invite for " + str(msg.subreddit))
               except:
                 continue
-              message.mark_as_read()
+              msg.mark_as_read()
             con.ping(reconnect=True)
             expired = False
             oops = False
