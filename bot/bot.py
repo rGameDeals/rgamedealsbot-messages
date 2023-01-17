@@ -89,6 +89,13 @@ while True:
     try:
         for msg in reddit.inbox.stream(pause_after=0):
           if msg:
+            if msg.body.startswith('**gadzooks!'):
+              sr = reddit.get_info(thing_id=msg.subreddit.fullname)
+              try:
+                sr.accept_moderator_invite()
+              except praw.errors.InvalidInvite:
+                continue
+              message.mark_as_read()
             con.ping(reconnect=True)
             expired = False
             oops = False
