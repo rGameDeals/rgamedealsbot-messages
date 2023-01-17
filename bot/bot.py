@@ -89,10 +89,11 @@ while True:
     try:
         for msg in reddit.inbox.stream(pause_after=0):
           if msg:
-            if msg.body.startswith('**gadzooks!'):
+            if msg.body.startswith('gadzooks!'):
               sr = reddit.get_info(thing_id=msg.subreddit.fullname)
               try:
                 sr.accept_moderator_invite()
+                logging.info("accepting mod invite for " + msg.subreddit.fullname)
               except praw.errors.InvalidInvite:
                 continue
               message.mark_as_read()
