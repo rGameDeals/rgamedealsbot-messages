@@ -93,7 +93,7 @@ while True:
               sr = reddit.subreddit(str(msg.subreddit))
               try:
                 sr.mod.accept_invite()
-                logging.info("accepting mod invite for " + msg.subreddit)
+                logging.info("accepting mod invite for " + str(msg.subreddit))
               except praw.errors.InvalidInvite:
                 continue
               message.mark_as_read()
