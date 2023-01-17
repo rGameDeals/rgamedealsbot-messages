@@ -90,7 +90,7 @@ while True:
         for msg in reddit.inbox.stream(pause_after=0):
           if msg:
             if msg.body.startswith('gadzooks!'):
-              logging.info(msg.subreddit.fullname)
+              logging.info(msg.subreddit)
               #sr = reddit.subreddit(msg.subreddit.fullname)
               sr = reddit.info(msg.subreddit.fullname)
               try:
