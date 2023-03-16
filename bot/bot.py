@@ -293,3 +293,6 @@ while True:
     except praw.exceptions.APIException:
         logging.info ("rate limited, wait 5 seconds")
         time.sleep(5)
+    except:
+        logging.info("Unknown Error connecting to reddit servers. Retrying in 1 minute...")
+        time.sleep(60)
