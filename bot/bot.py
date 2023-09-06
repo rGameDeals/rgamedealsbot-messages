@@ -286,6 +286,8 @@ while True:
             except AttributeError:
                 raise
                 logging.info("error checking comment by: " + msg.author.name)
+            msg.mark_as_read()
+
     except (prawcore.exceptions.RequestException, prawcore.exceptions.ResponseException):
         logging.info ("Error connecting to reddit servers. Retrying in 1 minute...")
         time.sleep(60)
