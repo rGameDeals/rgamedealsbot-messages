@@ -281,12 +281,16 @@ while True:
                               logging.info("maybe abuse from user?: https://reddit.com/u/" + msg.author.name + " on post https://reddit.com/" + msg.submission.id )
                               msg.mark_read()
                         elif usertest:
-                          msg.mark_read()
+                            msg.mark_read()
+                            
 
             except AttributeError:
                 raise
                 logging.info("error checking comment by: " + msg.author.name)
-            msg.mark_as_read()
+            try:
+              msg.mark_as_read()
+            except:
+              msg=msg
 
     except (prawcore.exceptions.RequestException, prawcore.exceptions.ResponseException):
         logging.info ("Error connecting to reddit servers. Retrying in 1 minute...")
