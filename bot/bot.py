@@ -298,7 +298,10 @@ while True:
     except Exception as e:
         exc_type, exc_obj, exc_tb = sys.exc_info()
         fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
-        logging.info(exc_type, fname, exc_tb.tb_lineno)
+        logging.info("Unknown Error connecting to reddit servers. Retrying in 1 minute...")
+        logging.info(exc_type)
+        logging.info(fname)
+        logging.info(exc_tb.tb_lineno)
+        logging.info("---------")
 
-        #logging.info("Unknown Error connecting to reddit servers. Retrying in 1 minute...")
         time.sleep(60)
