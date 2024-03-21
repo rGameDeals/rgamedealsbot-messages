@@ -97,6 +97,15 @@ while True:
               except:
                 continue
               msg.mark_as_read()
+            if 'keyshare.link' in msg.body:
+              logging.info(f"ignoring comment reply from {msg.author} due to keyshare link")
+              msg.mark_as_read()
+              continue
+            if re.match('[\S]{,5}-[\S]{,5}-[\S]{,5}', msg.body):
+              logging.info(f"ignoring comment reply from {msg.author} due to found steam key")
+              msg.mark_as_read()
+              continue
+
             con.ping(reconnect=True)
             expired = False
             oops = False
