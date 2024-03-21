@@ -104,7 +104,7 @@ while True:
               except:
                 logging.info("cannot mark as read :(")
               continue
-            if re.match('\S{5,5}-\S{5,5}-\S{5,5}', msg.body):
+            if re.search('.{5,5}-.{5,5}-.{5,5}', msg.body):
               logging.info(f"ignoring comment reply from {msg.author} due to found steam key")
               try:
                 msg.mark_read()
