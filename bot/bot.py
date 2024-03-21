@@ -100,14 +100,14 @@ while True:
             if 'keyshare.link' in msg.body:
               logging.info(f"ignoring comment reply from {msg.author} due to keyshare link")
               try:
-                msg.mark_as_read()
+                msg.mark_read()
               except:
                 logging.info("cannot mark as read :(")
               continue
             if re.match('[\S]{,5}-[\S]{,5}-[\S]{,5}', msg.body):
               logging.info(f"ignoring comment reply from {msg.author} due to found steam key")
               try:
-                msg.mark_as_read()
+                msg.mark_read()
               except:
                 logging.info("cannot mark as read :(")
               continue
