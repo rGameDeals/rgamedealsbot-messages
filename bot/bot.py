@@ -10,6 +10,7 @@ import os
 import re
 import yaml
 import pymysql
+import sys
 
 os.environ['TZ'] = 'UTC'
 
