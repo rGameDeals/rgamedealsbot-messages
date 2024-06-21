@@ -123,19 +123,19 @@ while True:
             wikiconfig = yaml.safe_load( open("/shared/wikiconfig.txt").read() )
 
             # checks if bot has already replied (good if script has to restart)
-            try:
-                if isinstance(msg, praw.models.Comment):
-                    for comment in msg.refresh().replies:
-                        try:
-                            if comment.author.name == REDDIT_USER:
-                                responded = 0
-                        except AttributeError:
-                            responded = 0
-                if msg.author is not None:
-                    logging.info("Message recieved from " + msg.author.name + ": " + msg.body)
-                    logging.info("* " + msg.submission.id + ": " + msg.submission.title)
-            except AttributeError:
-                logging.info("error checking comment by: " + msg.author.name)
+            #try:
+            #    if isinstance(msg, praw.models.Comment):
+            #        for comment in msg.refresh().replies:
+            #            try:
+            #                if comment.author.name == REDDIT_USER:
+            #                    responded = 0
+            #            except AttributeError:
+            #                responded = 0
+            #    if msg.author is not None:
+            #        logging.info("Message recieved from " + msg.author.name + ": " + msg.body)
+            #        logging.info("* " + msg.submission.id + ": " + msg.submission.title)
+            #except AttributeError:
+            #    logging.info("error checking comment by: " + msg.author.name)
             try:
                 if responded == 0:
                     if isinstance(msg, praw.models.Comment) and msg.author:
