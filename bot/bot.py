@@ -119,7 +119,8 @@ while True:
             setsched = False
             responded = 0
 
-            wikiconfig = yaml.safe_load( reddit.subreddit('gamedeals').wiki['gamedealsbot-config'].content_md )
+            #wikiconfig = yaml.safe_load( reddit.subreddit('gamedeals').wiki['gamedealsbot-config'].content_md )
+            wikiconfig = yaml.safe_load( open("/shared/wikiconfig.txt").read() )
 
             # checks if bot has already replied (good if script has to restart)
             try:
