@@ -136,6 +136,7 @@ while True:
             #        logging.info("* " + msg.submission.id + ": " + msg.submission.title)
             #except AttributeError:
             #    logging.info("error checking comment by: " + msg.author.name)
+
             try:
                 if responded == 0:
                     if isinstance(msg, praw.models.Comment) and msg.author:
@@ -143,7 +144,7 @@ while True:
                         u = msg.author
                         ismod = False
                         if msg.author:
-                          if msg.author.name in ['dgc1980','SquareWheel','smeggysmeg','smeggysmeg','ronin19','treblah3','caninehere','caninehere','oxygENigma','wayward_wanderer']:
+                          if msg.author.name in ['dgc1980','SquareWheel','smeggysmeg','smeggysmeg','ronin19','treblah3','wayward_wanderer']:
                             ismod = True
                         usertest = checkuser(msg.author.name)
                         try:
