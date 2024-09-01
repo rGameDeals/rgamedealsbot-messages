@@ -177,7 +177,7 @@ while True:
                           logging.info("abuse https://redd.id/" + msg.submission.id + " by: "+msg.author.name)
                           msg.mark_read()
 
-                        if ( oops == true or setsched == true or expired == true ) and (msg.submission.created_utc + (86400 * 90)) < time.time():
+                        if ( oops == True or setsched == True or expired == True ) and (msg.submission.created_utc + (86400 * 90)) < time.time():
                           setsched = False
                           oops = False
                           expired = False
