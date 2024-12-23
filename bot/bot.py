@@ -290,10 +290,10 @@ while True:
                                     flairtime = time.time()
                                     logging.info("expiring " + msg.submission.id + "   " + msg.submission.link_flair_text + "   " + str(flairtime))
                                     try:
-                                      cursorObj.execute('INSERT INTO flairs(postid, flairtext, timeset) VALUES(%s,%s,%i)', (msg.submission.id,msg.submission.link_flair_text,flairtime ) )
+                                      cursorObj.execute('INSERT INTO flairs(postid, flairtext, timeset) VALUES(%s,%s,%s)', (msg.submission.id,msg.submission.link_flair_text,str(int(flairtime)) ) )
                                       con.commit()
                                     except:
-                                      cursorObj.execute('INSERT INTO flairs(postid, flairtext, timeset) VALUES(%s,%s,%i)', (msg.submission.id,msg.submission.link_flair_text,0 ) )
+                                      cursorObj.execute('INSERT INTO flairs(postid, flairtext, timeset) VALUES(%s,%s,%s)', (msg.submission.id,msg.submission.link_flair_text,"0" ) )
                                       con.commit()
                                 msg.submission.mod.spoiler()
                                 msg.submission.mod.flair(text='Expired', css_class='expired')
