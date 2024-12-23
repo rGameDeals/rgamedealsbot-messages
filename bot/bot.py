@@ -288,7 +288,7 @@ while True:
                                 if msg.submission.link_flair_text is not None:
                                   if msg.submission.link_flair_text != "Expired":
                                     flairtime = time.time()
-                                    logging.info("expiring " + msg.submission.id)
+                                    logging.info("expiring " + msg.submission.id + "   " + msg.submission.link_flair_text + "   " + str(flairtime))
                                     cursorObj.execute('INSERT INTO flairs(postid, flairtext, timeset) VALUES(%s,%s,%s)', (msg.submission.id,msg.submission.link_flair_text,flairtime ) )
                                     con.commit()
                                 msg.submission.mod.spoiler()
