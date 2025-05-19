@@ -98,6 +98,7 @@ while True:
                 cursorObj.execute('SELECT * FROM abusive_users WHERE username = %s;', (mailuser,))
                 rows = cursorObj.fetchall()
                 if len(rows) > 0:
+                  logging.info(f"muting modmail id {modmail_conversation} due to user {mailuser}")
                   modmail_conversation.mute(num_days=28)
                   modmail_conversation.archive()
 
