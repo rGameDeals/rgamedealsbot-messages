@@ -90,7 +90,7 @@ logging.info("Monitoring inbox...")
 while True:
     try:
         try:
-          for modmail_conversation in subreddit.mod.stream.modmail_conversations(pause_after=0):
+          for modmail_conversation in subreddit.mod.stream.modmail_conversations(pause_after=-1):
             if modmail_conversation:
               con = pymysql.connect( host=os.environ['MYSQL_HOST'], user=os.environ['MYSQL_USER'], passwd=os.environ['MYSQL_PASS'], db=os.environ['MYSQL_DB'] )
               for mailuser in modmail_conversation.authors:
@@ -104,7 +104,7 @@ while True:
 
         except:
           logging.info("error muting user?")
-        for msg in reddit.inbox.stream(pause_after=0):
+        for msg in reddit.inbox.stream(pause_after=-1):
           if msg:
             if msg.body.startswith('gadzooks!'):
               sr = reddit.subreddit(str(msg.subreddit))
