@@ -17,8 +17,7 @@ os.environ['TZ'] = 'UTC'
 responded = 0
 footer = ""
 
-if os.environ['LOCAL'] != "1":
-  con = pymysql.connect(
+con = pymysql.connect(
     host=os.environ['MYSQL_HOST'],
     user=os.environ['MYSQL_USER'],
     passwd=os.environ['MYSQL_PASS'],
@@ -129,8 +128,7 @@ while True:
                 logging.info("cannot mark as read :(")
               continue
 
-            if os.environ['LOCAL'] != "1":
-              con.ping(reconnect=True)
+            con.ping(reconnect=True)
             expired = False
             oops = False
             setsched = False
@@ -219,8 +217,7 @@ while True:
                               msg.submission.mod.flair(text='')
                               logging.info("unflairing " + msg.submission.title + "requested by: "+msg.author.name)
 
-                              if os.environ['LOCAL'] != "1":
-                                con = pymysql.connect( host=os.environ['MYSQL_HOST'], user=os.environ['MYSQL_USER'], passwd=os.environ['MYSQL_PASS'], db=os.environ['MYSQL_DB'] )
+                              con = pymysql.connect( host=os.environ['MYSQL_HOST'], user=os.environ['MYSQL_USER'], passwd=os.environ['MYSQL_PASS'], db=os.environ['MYSQL_DB'] )
                                 cursorObj = con.cursor()
                                 cursorObj.execute('SELECT * FROM flairs WHERE postid = "'+msg.submission.id+'"')
                                 rows = cursorObj.fetchall()
@@ -248,12 +245,11 @@ while True:
                             match1 = re.search("(\d{1,2}:\d{2} \d{2}\/\d{2}\/\d{4})", text)
                             tm = datetime.datetime.strptime(match1.group(1), "%H:%M %d/%m/%Y")
                             tm2 = time.mktime(tm.timetuple())
-                            if os.environ['LOCAL'] != "1":
-                              con = pymysql.connect( host=os.environ['MYSQL_HOST'], user=os.environ['MYSQL_USER'], passwd=os.environ['MYSQL_PASS'], db=os.environ['MYSQL_DB'] )
-                              cursorObj = con.cursor()
-                              cursorObj.execute('DELETE from schedules WHERE postid = "' + msg.submission.id + '"')
-                              cursorObj.execute('INSERT into schedules(postid, schedtime) values(%s,%s)',(msg.submission.id,tm2) )
-                              con.commit()
+                            con = pymysql.connect( host=os.environ['MYSQL_HOST'], user=os.environ['MYSQL_USER'], passwd=os.environ['MYSQL_PASS'], db=os.environ['MYSQL_DB'] )
+                            cursorObj = con.cursor()
+                            cursorObj.execute('DELETE from schedules WHERE postid = "' + msg.submission.id + '"')
+                            cursorObj.execute('INSERT into schedules(postid, schedtime) values(%s,%s)',(msg.submission.id,tm2) )
+                            con.commit()
                             logging.info("setting up schedule: " + msg.author.name + "for https://redd.it/" + msg.submission.id + " at " + str(tm.strftime('%Y-%m-%d %H:%M:%S'))  )
                             schedulereply = wikiconfig['schedule-message']
                             schedulereply = schedulereply.replace('{{expired trigger}}',wikiconfig['expired-trigger'])
@@ -270,12 +266,11 @@ while True:
                             print( match1 )
                             tm = dateparser.parse( match1.group(1), settings={'PREFER_DATES_FROM': 'future', 'TIMEZONE': 'UTC', 'TO_TIMEZONE': 'UTC'} )
                             tm2 = time.mktime( tm.timetuple() )
-                            if os.environ['LOCAL'] != "1":
-                              con = pymysql.connect( host=os.environ['MYSQL_HOST'], user=os.environ['MYSQL_USER'], passwd=os.environ['MYSQL_PASS'], db=os.environ['MYSQL_DB'] )
-                              cursorObj = con.cursor()
-                              cursorObj.execute('DELETE from schedules WHERE postid = "' + msg.submission.id + '"')
-                              cursorObj.execute('INSERT into schedules(postid, schedtime) values(%s,%s)',(msg.submission.id,tm2) )
-                              con.commit()
+                            con = pymysql.connect( host=os.environ['MYSQL_HOST'], user=os.environ['MYSQL_USER'], passwd=os.environ['MYSQL_PASS'], db=os.environ['MYSQL_DB'] )
+                            cursorObj = con.cursor()
+                            cursorObj.execute('DELETE from schedules WHERE postid = "' + msg.submission.id + '"')
+                            cursorObj.execute('INSERT into schedules(postid, schedtime) values(%s,%s)',(msg.submission.id,tm2) )
+                            con.commit()
                             logging.info("setting up schedule: " + msg.author.name + "for https://redd.it/" + msg.submission.id + " at " + str(tm.strftime('%Y-%m-%d %H:%M:%S'))  )
                             schedulereply = wikiconfig['schedule-message']
                             schedulereply = schedulereply.replace('{{expired trigger}}',wikiconfig['expired-trigger'])
@@ -302,10 +297,9 @@ while True:
                                 logging.info("already expired... responded to: " + msg.author.name)
                             else:
                                 title_url = msg.submission.url
-                                if os.environ['LOCAL'] != "1":
-                                  con = pymysql.connect( host=os.environ['MYSQL_HOST'], user=os.environ['MYSQL_USER'], passwd=os.environ['MYSQL_PASS'], db=os.environ['MYSQL_DB'] )
-                                  cursorObj = con.cursor()
-                                  if msg.submission.link_flair_text is not None:
+                                con = pymysql.connect( host=os.environ['MYSQL_HOST'], user=os.environ['MYSQL_USER'], passwd=os.environ['MYSQL_PASS'], db=os.environ['MYSQL_DB'] )
+                                cursorObj = con.cursor()
+                                if msg.submission.link_flair_text is not None:
                                     if msg.submission.link_flair_text != "Expired":
                                       flairtime = time.time()
                                       try:
