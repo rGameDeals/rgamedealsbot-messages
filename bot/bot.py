@@ -80,7 +80,7 @@ def checkuser(username):
   #  commentcount += 1
   #  if submission.subreddit.display_name.lower() in Config.SuspectSubs:
   #    return True
-  commentdays = ( (commenttime / commentcount) / 86400 )
+  #commentdays = ( (commenttime / commentcount) / 86400 )
   #if commentdays >= Config.HistoryDays:
   #  return True
   return False
