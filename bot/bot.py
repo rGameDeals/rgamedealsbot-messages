@@ -88,8 +88,8 @@ def checkuser(username):
 logging.info("Monitoring inbox...")
 while True:
     try:
-        try:
-          for modmail_conversation in subreddit.mod.stream.modmail_conversations(pause_after=-1):
+        for modmail_conversation in subreddit.mod.stream.modmail_conversations(pause_after=-1):
+          try:
             logging.info("modmail")
             if modmail_conversation:
               con = pymysql.connect( host=os.environ['MYSQL_HOST'], user=os.environ['MYSQL_USER'], passwd=os.environ['MYSQL_PASS'], db=os.environ['MYSQL_DB'] )
@@ -102,8 +102,8 @@ while True:
                   modmail_conversation.mute(num_days=28)
                   modmail_conversation.archive()
 
-        except:
-          logging.info("error muting user?")
+          except:
+            logging.info("error muting user?")
         for msg in reddit.inbox.stream(pause_after=-1):
           logging.info("inbox")
           if msg:
