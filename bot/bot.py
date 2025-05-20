@@ -218,9 +218,9 @@ while True:
                               logging.info("unflairing " + msg.submission.title + "requested by: "+msg.author.name)
 
                               con = pymysql.connect( host=os.environ['MYSQL_HOST'], user=os.environ['MYSQL_USER'], passwd=os.environ['MYSQL_PASS'], db=os.environ['MYSQL_DB'] )
-                                cursorObj = con.cursor()
-                                cursorObj.execute('SELECT * FROM flairs WHERE postid = "'+msg.submission.id+'"')
-                                rows = cursorObj.fetchall()
+                              cursorObj = con.cursor()
+                              cursorObj.execute('SELECT * FROM flairs WHERE postid = "'+msg.submission.id+'"')
+                              rows = cursorObj.fetchall()
                               msg.mark_read()
                               if len(rows) != 0 and rows[0][2] != "Expired":
                                 try:
