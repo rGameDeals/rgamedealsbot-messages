@@ -91,7 +91,7 @@ while True:
         for modmail_conversation in subreddit.mod.stream.modmail_conversations(pause_after=-1):
           try:
             if modmail_conversation == None:
-              logging.info("no more modmail")
+              #logging.info("no more modmail")
               break
 
             if modmail_conversation:
@@ -109,10 +109,12 @@ while True:
 
         for msg in reddit.inbox.stream(pause_after=-1):
           if msg == None:
-              logging.info("no more mail")
+              #logging.info("no more mail")
               break
           if msg:
+            logging.info(msg)
             if msg.body.startswith('gadzooks!'):
+
               sr = reddit.subreddit(str(msg.subreddit))
               try:
                 sr.mod.accept_invite()
