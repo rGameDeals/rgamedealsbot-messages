@@ -91,6 +91,7 @@ while True:
         for modmail_conversation in subreddit.mod.stream.modmail_conversations(pause_after=-1):
           try:
             if modmail_conversation == None:
+              logging.info("no more modmail")
               break
 
             if modmail_conversation:
@@ -103,11 +104,12 @@ while True:
                   logging.info(f"muting modmail id {modmail_conversation} due to user {mailuser}")
                   modmail_conversation.mute(num_days=28)
                   modmail_conversation.archive()
-
           except:
             logging.info("error muting user?")
+
         for msg in reddit.inbox.stream(pause_after=-1):
           if msg == None:
+              logging.info("no more mail")
               break
           if msg:
             if msg.body.startswith('gadzooks!'):
@@ -164,9 +166,13 @@ while True:
                         u = msg.author
                         ismod = False
                         if msg.author:
-                          if msg.author.name in ['dgc1980','SquareWheel','smeggysmeg','smeggysmeg','ronin19','treblah3','wayward_wanderer']:
+                          if msg.author.name in ['dgc1980','SquareWheel','smeggysmeg','ronin19','treblah3','wayward_wanderer']:
                             ismod = True
                         usertest = checkuser(msg.author.name)
+
+                        logging.info(u)
+                        logging.info(text)
+
                         try:
                           #print(wikiconfig)
                           extrig = wikiconfig['expired-trigger']
