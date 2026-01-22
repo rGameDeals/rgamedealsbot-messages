@@ -238,6 +238,9 @@ while True:
                               if len(rows) != 0 and rows[0][2] != "Expired":
                                 try:
                                   cursorObj.execute('DELETE FROM flairs WHERE postid = "'+msg.submission.id+'"')
+
+                                  cursorObj.execute('INSERT into schedules(postid, schedtime) values(%s,%s)',(msg.submission.id, ( time.time()  + (86400*30) )  ) )
+
                                   con.commit()
                                 except:
                                   pass
